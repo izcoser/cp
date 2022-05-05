@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <cmath>
 
 // I - Calculator Conundrum
 //
@@ -12,14 +12,30 @@ int main(){
 		std::cin >> n;
 		std::cin >> k;
 
+		long long int limit = pow(10, n) - 1;
 		long long int a = k;
-		long long int b = std::stoll(std::to_string(k * k).substr(0, n));
+		long long int b = k * k;
+		while(b > limit){
+			b /= 10;
+		}
 		long long int max = std::max(a, b);
 
 		while(a != b){
-			a = std::stoll(std::to_string(a * a).substr(0, n));
-			b = std::stoll(std::to_string(b * b).substr(0, n));
-			b = std::stoll(std::to_string(b * b).substr(0, n));
+			a *= a;
+			while(a > limit){
+				a /= 10;
+			}
+
+			b *= b;
+			while(b > limit){
+				b /= 10;
+			}
+
+			b *= b;
+			while(b > limit){
+				b /= 10;
+			}
+			
 			long long int temp = std::max(a, b);
 			if(temp > max){
 				max = temp;
