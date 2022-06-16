@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <set>
 
 using namespace std;
 
-string last = "";
+set<string> outputset;
 stack<string> output;
 
 void stackSumsEqualToN(int ns[], bool combs[], int begin, int len, int sum, int N){
@@ -19,9 +20,9 @@ void stackSumsEqualToN(int ns[], bool combs[], int begin, int len, int sum, int 
                 }
             }
             s += "\n";
-            if(s.compare(last) != 0){
+            if(outputset.find(s) == outputset.end()){
                 output.push(s);
-                last = s;
+                outputset.insert(s);
             }
         }
     }
@@ -52,7 +53,7 @@ int main(){
         }
         
         stackSumsEqualToN(ns, combs, 0, n, 0, t);
-        last = "";
+        outputset.clear();
         cout << "Sums of " << t << ":" << endl;
         if(output.empty()){
             cout << "NONE" << endl;
