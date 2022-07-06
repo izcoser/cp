@@ -9,3 +9,4 @@ Problems are divided into sections:
 4. lab4 - Heap & Segment Tree
 5. lab5 - Full Search & Divide and Conquer
 6. lab6 - Greedy Algorithms
+7. lab7 - Dynamic Programming
