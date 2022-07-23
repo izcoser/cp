@@ -10,3 +10,4 @@ Problems are divided into sections:
 5. lab5 - Full Search & Divide and Conquer
 6. lab6 - Greedy Algorithms
 7. lab7 - Dynamic Programming
+8. lab8 - Graph Theory
