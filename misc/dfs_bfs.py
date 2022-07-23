@@ -23,28 +23,30 @@ def dfs(graph, v, visited):
 def bfs(graph, v, visited):
     q = []
     q.append(v)
+    visited[v] = True
     while len(q) > 0:
         p = q.pop(0)
-        visited[p] = True
         print(p, end=' ')
         for n in graph[p]:
             if not visited[n]:
                 q.append(n)
+                visited[n] = True
     print()
 
 def bfs_with_depth(graph, v, visited):
     depth = 0
     q = []
     q.append(v)
+    visited[v] = True
     while len(q) > 0:
         depth_size = len(q)
         while depth_size > 0:
             p = q.pop(0)
-            visited[p] = True
             print(f'{p}, depth: {depth}')
             for n in graph[p]:
                 if not visited[n]:
                     q.append(n)
+                    visited[n] = True
             depth_size -= 1
         depth += 1
 
