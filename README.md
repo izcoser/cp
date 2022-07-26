@@ -11,3 +11,4 @@ Problems are divided into sections:
 6. lab6 - Greedy Algorithms
 7. lab7 - Dynamic Programming
 8. lab8 - Graph Theory
+9. lab9 - Graph Theory - Shortest Paths
