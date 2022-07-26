@@ -28,12 +28,17 @@ def dijkstra(graph, s):
     heapq.heapify(s)
     while len(s) > 0:
         v = heapq.heappop(s)[1]
+        if v in t: # v is a duplicate.
+            continue
+        if t == len(graph): # already visited all nodes.
+            break
         t.add(v)
         neighbors = [i[0] for i in graph[v]]
         for u in neighbors:
             d_vu = distance_u_v(graph, v, u)
             if u not in t and distances[u] > distances[v] + d_vu:
                 distances[u] = distances[v] + d_vu
+                heapq.heappush(s, (distances[u], u)) # add node u to heap again, the previous will be ignored.
     return distances
 
 distances = dijkstra(graph, 0)
