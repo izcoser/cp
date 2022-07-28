@@ -66,6 +66,7 @@ int main(){
         cout << count << endl;
         if(c < t - 1){
             getline(cin, x);
+            cout << endl;
         }
     }
     return 0;
