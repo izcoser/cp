@@ -12,3 +12,4 @@ Problems are divided into sections:
 7. lab7 - Dynamic Programming
 8. lab8 - Graph Theory
 9. lab9 - Graph Theory - Shortest Paths
+10. lab10 - Graph Theory - Maximum Flow & Matching
