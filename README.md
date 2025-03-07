@@ -1,6 +1,6 @@
 # Competitive Programming
 
-My solutions to a variety of programming problems from my university class.
+My solutions to a variety of programming problems from my university class, as well as LeetCode problems.
 Problems are divided into sections:
 
 1. lab1 - Warmup
@@ -13,3 +13,5 @@ Problems are divided into sections:
 8. lab8 - Graph Theory
 9. lab9 - Graph Theory - Shortest Paths
 10. lab10 - Graph Theory - Maximum Flow & Matching
+
+LeetCode problems are in the folder `leetcode`.
