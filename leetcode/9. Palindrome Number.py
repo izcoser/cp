@@ -1,5 +1,7 @@
 from math import log10
 
+# https://leetcode.com/problems/palindrome-number/description/
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         # negative numbers can't be palindrome.
