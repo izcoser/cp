@@ -16,3 +16,11 @@ class Solution:
         for i, c in enumerate(count):
             if c == 1:
                 return i - 30000
+
+    # I forgot XOR exists :(
+    
+    # def singleNumber(self, nums: List[int]) -> int:
+        # result = 0
+        # for num in nums:
+        #     result ^= num
+        # return result
