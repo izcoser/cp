@@ -25,3 +25,15 @@ class Solution:
             return sum == target
 
         return self.branch(node.left, sum, target) or self.branch(node.right, sum, target)
+    
+
+# Book solution:
+# class Solution:
+#     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+#         if not root:
+#             return False
+#         if not root.left and not root.right:
+#             return root.val == targetSum
+#         targetSum -= root.val
+#         return (self.hasPathSum(root.left, targetSum) or 
+#                 self.hasPathSum(root.right, targetSum))
