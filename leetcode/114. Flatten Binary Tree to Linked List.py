@@ -56,7 +56,6 @@ class SolutionO1Space:
         
         if root.right and not root.left:
             self.flatten(root.right)
-            pass
 
         if root.right and root.left:
             left_child = root.left
