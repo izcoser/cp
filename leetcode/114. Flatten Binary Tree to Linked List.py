@@ -1,5 +1,5 @@
 from typing import Optional
-# Couldn't come up with a O(1) space solution yet.
+# Came up with an O(1) space solution later.
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -36,3 +36,39 @@ class Solution:
         self.nodes[len(self.nodes) - 1].right = None
 
         
+class SolutionO1Space:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        if not root:
+            return
+
+        # necessary?
+        if not root.left and not root.right:
+            return
+
+        if root.left and not root.right:
+            left_child = root.left
+            root.left = None
+            self.flatten(left_child)    
+            root.right = left_child
+        
+        if root.right and not root.left:
+            self.flatten(root.right)
+            pass
+
+        if root.right and root.left:
+            left_child = root.left
+            right_child = root.right
+
+            root.right = left_child
+            root.left = None
+
+            self.flatten(left_child)
+            n = left_child
+            while n.right != None:
+                n = n.right
+            n.right = right_child
+            self.flatten(right_child)
+
