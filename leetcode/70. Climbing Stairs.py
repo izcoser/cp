@@ -6,3 +6,7 @@ class Solution:
             two = one
             one = val
         return one
+    
+
+    def climbStairsDfs(self, n: int) -> int:
+        pass

@@ -14,7 +14,6 @@ class Solution:
             return head
 
         rotations = k % l
-        print("list has len", l, "will perform ", rotations, "rotations")
         if rotations == 0:
             return head
 
