@@ -1,51 +1,83 @@
 from collections import defaultdict
 from typing import List
+from heapq import heappop, heappush
+
+def append_to_list_maximum_10(lst, item):
+    if len(lst) == 10:
+        lst.pop(0)
+    lst.append(item)
+
 class Twitter:
 
     def __init__(self):
-        self.tweets = []
+        self.tweets = defaultdict(list)
         self.follows = defaultdict(set)
+        self.followees = defaultdict(set)
         self.feed_cache = {}
+        self.timestamp = 0
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        t = Tweet(userId, tweetId)
-        self.tweets.append(t)
+        t = Tweet(userId, tweetId, self.timestamp)
+        self.timestamp += 1
+
+        append_to_list_maximum_10(self.tweets[userId], t)
+
+        if userId in self.feed_cache:
+            del self.feed_cache[userId]
+
+        # clear the cache of every user who follows him.
+        for u in self.followees[userId]:
+            if u in self.feed_cache:
+                del self.feed_cache[u]
+
         
     def getNewsFeed(self, userId: int) -> List[int]:
-        last_id = self.tweets[-1].tweetId if len(self.tweets) > 0 else "a"
-        key = (userId, last_id)
-        if key in self.feed_cache:
-            return self.feed_cache[key]
+        if userId in self.feed_cache:
+            return self.feed_cache[userId]
+        
+        latest = []
+        
+        authors = [userId] + list(self.follows[userId])
+        for a in authors:
+            tweets = self.tweets[a]
+            if tweets:
+                idx = len(tweets) - 1
+                tweet = tweets[idx]
+                heappush(latest, (-tweet.timestamp, a, idx))
 
         feed = []
-        for t in self.tweets[::-1]:
-            by = t.userId
-            if by == userId or by in self.follows[userId]:
-                feed.append(t.tweetId)
-            if len(feed) == 10:
-                break
 
-        self.feed_cache[key] = feed
+        while latest and len(feed) < 10:
+            _, author, idx = heappop(latest)
+            tweet = self.tweets[author][idx]
+            feed.append(tweet.tweetId)
+
+            if idx > 0:
+                prevTweet = self.tweets[author][idx - 1]
+                heappush(latest, (-prevTweet.timestamp, author, idx - 1))
+
+        self.feed_cache[userId] = feed
         return feed
 
     def follow(self, followerId: int, followeeId: int) -> None:
         self.follows[followerId].add(followeeId)
-        for k in self.feed_cache.copy():
-            userId, _ = k
-            if userId == followerId:
-                del self.feed_cache[k]
+        self.followees[followeeId].add(followerId)
+
+        if followerId in self.feed_cache:
+            del self.feed_cache[followerId]
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         self.follows[followerId].discard(followeeId)
-        for k in self.feed_cache.copy():
-            userId, _ = k
-            if userId == followerId:
-                del self.feed_cache[k]
+        self.followees[followeeId].discard(followerId)
+        
+        if followerId in self.feed_cache:
+            del self.feed_cache[followerId]
 
 class Tweet:
-    def __init__(self, userId: int, tweetId: int):
+    def __init__(self, userId: int, tweetId: int, timestamp: int):
         self.userId = userId
         self.tweetId = tweetId
+        self.timestamp = timestamp
 
 # Your Twitter object will be instantiated and called as such:
 # obj = Twitter()
