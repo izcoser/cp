@@ -1,7 +1,7 @@
 from typing import List
 from heapq import heappush, heappop, heapify
 
-# min heap, medium
+# min heap, easy
 
 class KthLargest:
 
