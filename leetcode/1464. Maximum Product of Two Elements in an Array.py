@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from heapq import heapify, heappop
 # min heap, easy
 class Solution:
