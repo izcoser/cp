@@ -19,5 +19,9 @@ class Solution:
                         del count[k]
                     elif count[k] > 1:
                         count[k] -= 1
-        print(count)
-        return [k for k in count if count[k] > len(nums) / 3]
+        res = []
+        for n in count:
+            if nums.count(n) > len(nums) // 3:
+                res.append(n)
+
+        return res
