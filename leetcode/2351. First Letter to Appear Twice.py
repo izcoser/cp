@@ -1,4 +1,5 @@
 from collections import defaultdict
+#easy, counting
 class Solution:
     def repeatedCharacter(self, s: str) -> str:
         chrs = defaultdict(int)
