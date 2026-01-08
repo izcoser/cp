@@ -1,4 +1,5 @@
 from collections import Counter
+# easy, hash table
 class Solution:
     def firstUniqChar(self, s: str) -> int:
         counter = Counter(s)

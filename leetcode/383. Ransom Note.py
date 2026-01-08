@@ -1,4 +1,5 @@
 from collections import Counter
+# easy, hash table
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         ransom_count = Counter(ransomNote)

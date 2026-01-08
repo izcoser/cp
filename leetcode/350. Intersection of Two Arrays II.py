@@ -1,5 +1,6 @@
 from typing import List
 from collections import Counter
+# easy, hash table
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         nums1_counter = Counter(nums1)
